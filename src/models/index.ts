@@ -1,6 +1,6 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 import dotenv from "dotenv";
-// import UserModel from '../services/users/users.model';
+import UserModel from '../services/users/users.model';
 // import VerificationModel from '../services/verifications/verifications.model';
 // import AuthModel from '../services/auth/auth.model';
 // import DeviceModel from '../services/devices/devices.model';
@@ -21,9 +21,9 @@ const connectToDatabase = async () => {
         serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
         socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     } as ConnectOptions);
-    // await UserModel.createCollection();
+    await UserModel.createCollection();
     // await VerificationModel.createCollection();
     // await AuthModel.createCollection();
     // await DeviceModel.createCollection();
 };
-export { connectToDatabase };
+export { connectToDatabase, UserModel };
