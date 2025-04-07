@@ -26,12 +26,3 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
         return res.status(401).json({ message: 'Invalid token' });
     }
 };
-
-export const authorizeRoles = (...roles: string[]) => {
-    return (req: AuthRequest, res: Response, next: NextFunction) => {
-        if (!roles.includes(req.user?.role as unknown as string)) {
-            return res.status(403).json({ message: 'Access denied' });
-        }
-        next();
-    };
-};

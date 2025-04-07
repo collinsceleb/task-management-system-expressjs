@@ -1,5 +1,5 @@
 import {CreateUserDto} from "./users.dto";
-import {UserModel} from "../../models";
+import UserModel from "./users.model";
 import {CreateAuthDto} from "./create-auth.dto";
 
 
@@ -7,12 +7,12 @@ import {CreateAuthDto} from "./create-auth.dto";
 const userModel = UserModel;
 export const registerUser = async (createUserDto: CreateUserDto) =>{
     try {
-        const {email, password, name} = createUserDto;
+        const {email, password, name,role} = createUserDto;
         const existingUser = await userModel.findOne({email});
         if (existingUser) {
             throw new Error('Email already exists');
         }
-        const user = await userModel.create({email, password, name});
+        const user = await userModel.create({email, password, name, role});
         await user.save()
         return user;
     } catch (e: Error | any) {
