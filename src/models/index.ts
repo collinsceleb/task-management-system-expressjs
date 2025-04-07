@@ -1,9 +1,7 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 import dotenv from "dotenv";
 import UserModel from '../services/users/users.model';
-// import VerificationModel from '../services/verifications/verifications.model';
-// import AuthModel from '../services/auth/auth.model';
-// import DeviceModel from '../services/devices/devices.model';
+
 dotenv.config()
 const connectToDatabase = async () => {
     const connectionString = (process.env.DB_URI) as string;
@@ -22,8 +20,5 @@ const connectToDatabase = async () => {
         socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     } as ConnectOptions);
     await UserModel.createCollection();
-    // await VerificationModel.createCollection();
-    // await AuthModel.createCollection();
-    // await DeviceModel.createCollection();
 };
 export { connectToDatabase, UserModel };
